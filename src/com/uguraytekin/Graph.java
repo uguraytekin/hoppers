@@ -33,7 +33,7 @@ public class Graph {
         //add the startNode to list;
         unsettledNodes.add(startNode);
 
-        while (unsettledNodes.size() != 0) {
+        while (!unsettledNodes.isEmpty()) {
             //find lowest distance node in unsettledNodes list
             Node currentNode = getLowestDistanceNode(unsettledNodes);
             unsettledNodes.remove(currentNode);
