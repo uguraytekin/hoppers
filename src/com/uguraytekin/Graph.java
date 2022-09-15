@@ -24,7 +24,7 @@ public class Graph {
 
     // Level BFS function to find minimum path
     // from source to sink
-    public String calculateShortestPathFromSource() {
+    public String calculateShortestPath() {
         int destNodeIndex = coordinateToNodeIndex(dest.getX(), dest.getY());
 
         // Create a HashSet for BFS

@@ -13,11 +13,12 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) {
-        read();
+        for (Graph graph : read()) {
+            System.out.println(graph.calculateShortestPath());
+        }
     }
 
-
-    static void read() {
+    static List<Graph> read() {
         Scanner input = new Scanner(System.in);
         int N; //number of test cases
         N = input.nextInt();
@@ -28,18 +29,16 @@ public class Main {
         for (int i = 0; i < N; i++) {
             //read board X Y
             List<Integer> board = Arrays.stream(input.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
-
             if (board.get(0) < 0 || board.get(0) > 30 || board.get(1) < 0 || board.get(1) > 30) {
                 System.out.println("Rule: X Y , (1 <= X <= 30) and (1 <= Y <= 30)");
-                return;
+                return graphs;
             }
 
             //read (x1,y1) start point , (x2,y2) end point
             List<Integer> points = Arrays.stream(input.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
-
             if (points.get(0) < 0 || points.get(1) >= board.get(0) || points.get(2) < 0 || points.get(3) >= board.get(1)) {
                 System.out.println("Rule: x1 y1 x2 y2 , 0 <= x1, x2 < X, 0 <= y1, y2 < Y");
-                return;
+                return graphs;
             }
 
             //P number of obstacle
@@ -52,11 +51,10 @@ public class Main {
                 List<Integer> obstacleInput = Arrays.stream(input.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
                 Obstacle obstacle = new Obstacle(obstacleInput.get(0), obstacleInput.get(1), obstacleInput.get(2), obstacleInput.get(3));
                 obstacleList.add(obstacle);
-
                 if (obstacle.x1 < 0 || obstacle.x1 > obstacle.x2 || obstacle.x2 >= board.get(0) ||
                         obstacle.y1 < 0 || obstacle.y1 > obstacle.y2 || obstacle.y2 >= board.get(0)) {
                     System.out.println("Rule: x1 x2 y1 y2 , (0 <= x1 <= x2 < X, 0 <= y1 <= y2 < Y)");
-                    return;
+                    return graphs;
                 }
             }
 
@@ -64,8 +62,6 @@ public class Main {
             graphs.add(graph);
         }
 
-        for (Graph graph : graphs) {
-            System.out.println(graph.calculateShortestPathFromSource());
-        }
+        return graphs;
     }
 }
