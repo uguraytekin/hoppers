@@ -1,8 +1,5 @@
-package test.com.uguraytekin;
+package com.uguraytekin;
 
-import com.uguraytekin.Graph;
-import com.uguraytekin.Obstacle;
-import com.uguraytekin.Square;
 import org.junit.Test;
 
 import java.util.Arrays;
